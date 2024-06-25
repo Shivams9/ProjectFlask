@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Image Name</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="display-container">
+        <h1>Uploaded Image Name</h1>
+        <p id="imageNameDisplay"></p>
+    </div>
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while ((m = regex.exec(queryString)) !== null) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = getQueryParams();
+            const imageNameDisplay = document.getElementById('imageNameDisplay');
+            imageNameDisplay.textContent = params.imageName || 'No image uploaded';
+        });
+    </script>
+</body>
+</html>
